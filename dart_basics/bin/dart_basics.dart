@@ -1,5 +1,22 @@
-import 'package:dart_basics/dart_basics.dart' as dart_basics;
+// dart_basics.dart：入口，统一调用三组示例并输出
+// 对应实践指南第五章「课堂案例复现」步骤二
+
+import 'types_demo.dart';
+import 'func_demo.dart';
+import 'flow_demo.dart';
 
 void main(List<String> arguments) {
-  print('Hello world: ${dart_basics.calculate()}!');
+  print('===== Dart 基础语法合集 =====');
+
+  variableDemo();
+  print('');
+  interpolationDemo();
+  print('');
+  nullSafetyDemo();
+  print('');
+  funcDemo();
+  print('');
+  flowDemo();
+
+  print('===== 全部输出结束 =====');
 }
