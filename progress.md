@@ -28,15 +28,15 @@
 5. **修正空安全告警**：首版 `dart analyze` 报 2 条告警（死代码 + `!` 多余），根因是类型提升。改用「参数化可空值 + Map 查表」演示 `?.`/`??`/`!`，告警清零。
 6. **步骤二提交**：`feat: types/func/flow demos all pass`，`dart run` 全部输出正确。
 7. **步骤三对拍**：让 TraeCode 出 5 道「预测输出」题（空安全、命名参数、整除），先手写答案再对照参考答案，Q4/Q5 出现分歧并纠正。提交 `docs: ai quiz round 1 records`。
-8. **自主实践**：在 `bin/practice/` 下完成空安全改写、报告生成器（命名参数）、成绩分级器扩展三任务，`practice_main.dart` 统一调用，`dart run` 通过。
-9. **独立研究（选做）**：在 `bin/research/` 下做 const/final、类型提升、dart format 三实验，实测验证并记录于 `research_notes.md`。
+8. **自主实践**：在 `bin/02_空安全改写/`、`bin/03_命名参数设计/`、`bin/04_成绩分级器/` 三文件夹分别完成空安全改写、报告生成器（命名参数）、成绩分级器扩展，各文件含独立 `main`，分别 `dart run` 通过。
+9. **独立研究（选做）**：在 `bin/06_独立研究/` 下做 const/final、类型提升、dart format 三实验，实测验证并记录于 `notes.md`。
 10. **仓库收尾**：补 `README.md` 与本进度报告，提交自主实践与文档。
 
 ## 四、关键代码
 
 > 以下代码均为 AI 辅助生成 + 本人逐行验证（手工核对语义、`dart analyze`/`dart run` 实测）。
 
-### 关键代码 1：空安全四件套（`bin/types_demo.dart`，节选）
+### 关键代码 1：空安全四件套（`bin/01_案例复现/types_demo.dart`，节选）
 
 ```dart
 void demonstrateNullable(String? nickname) {
@@ -66,7 +66,7 @@ void nullSafetyDemo() {
 - `students['001']!`：Map 查表恒返回 `String?`，分析器无法类型提升，`!` 在此真正必要（非多余）。
 - `late String token`：延迟初始化，承诺使用前必赋值。
 
-### 关键代码 2：命名参数设计（`bin/practice/report_generator.dart`，节选）
+### 关键代码 2：命名参数设计（`bin/03_命名参数设计/report_generator.dart`，节选）
 
 ```dart
 String generateReport({
@@ -89,7 +89,7 @@ String generateReport({
 - `String? className`：可空可选参数；`??` 给默认值。
 - 三种调用：①仅必填；②加 `className:`；③全参数（含 `teacher:`、`submitDate:`）。
 
-### 关键代码 3：成绩分级器扩展（`bin/practice/grade_classifier.dart`）
+### 关键代码 3：成绩分级器扩展（`bin/04_成绩分级器/grade_classifier.dart`）
 
 ```dart
 String gradeOf(int score) {
@@ -109,7 +109,7 @@ String gradeOf(int score) {
 
 - **`dart run` 全部输出正确**：四组示例（变量/插值/空安全/函数/控制流）输出与预期一致（见第八节证据）。
 - **空安全无编译告警**：`dart analyze` 输出 `No issues found!`（首版曾有 2 条告警，已在「问题与调试」解决）。
-- **自主实践可运行**：`dart run bin/practice/practice_main.dart` 三任务全部输出正确。
+- **自主实践可运行**：`02/03/04` 三文件夹各含独立 `main`，分别 `dart run` 全部输出正确。
 - **能口头解释 `??` 与 `!` 的区别**：`??` 是「左侧为 null 时取默认值」，不抛错；`!` 是「断言非 null，为 null 则抛运行时异常」，慎用。
 
 ## 六、问题与调试
@@ -130,8 +130,8 @@ String gradeOf(int score) {
 | 案例代码生成 | 按指南要求生成 types/func/flow 三个 demo | 三份 dart 源文件 | 逐行读码 + `dart run` 核对输出 + `dart analyze` 零告警 |
 | 空安全告警修复 | 说明告警根因并改写演示 | 改用参数+Map 查表写法 | `dart analyze` 由 2 告警 → 0 告警 |
 | 对拍出题 | 指定范围（空安全/命名参数/整除）出 5 道预测输出题 | 5 题及参考答案 | 先手写答案再对照；Q4/Q5 分歧已纠正并实测 |
-| 自主实践代码 | 生成空安全改写/报告生成器/分级器 | 三份 dart 源文件 | `dart run practice_main.dart` 输出核对 |
-| 独立研究 | 仅检索官方文档语义，不直接生成结论 | research_notes.md | `dart analyze`/`dart run`/`dart format` 实测验证 |
+| 自主实践代码 | 生成空安全改写/报告生成器/分级器 | 三份 dart 源文件（各含独立 main） | 逐文件 `dart run` 输出核对 |
+| 独立研究 | 仅检索官方文档语义，不直接生成结论 | `bin/06_独立研究/notes.md` | `dart analyze`/`dart run`/`dart format` 实测验证 |
 
 红线遵守：所有 AI 生成代码均经 `dart analyze` + `dart run` 实测验证后再提交；独立研究结论以官方文档为准、未直接采信 AI 结论。
 

@@ -65,3 +65,5 @@ void reportGeneratorDemo() {
     submitDate: DateTime(2026, 9, 24),
   ));
 }
+
+void main() => reportGeneratorDemo();

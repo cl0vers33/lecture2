@@ -26,7 +26,7 @@
 
 **问题**：可空变量在 `if` 判空后，能否直接当非空用（免 `!`）？
 
-**探索过程**（`bin/research/research.dart`）：
+**探索过程**（`bin/06_独立研究/type_promotion.dart`）：
 ```dart
 String? name = readName();   // 运行时来源，分析器无法确定是否为 null
 if (name != null) {

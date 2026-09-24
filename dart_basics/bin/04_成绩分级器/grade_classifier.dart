@@ -27,3 +27,5 @@ void gradeClassifierDemo() {
     print('$s 分 -> ${gradeOf(s)}');
   }
 }
+
+void main() => gradeClassifierDemo();

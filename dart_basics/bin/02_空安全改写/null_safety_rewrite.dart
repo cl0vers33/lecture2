@@ -43,3 +43,5 @@ void nullSafetyRewriteDemo() {
   print('');
   greetSafe('hu'); // 传非空，验证非空分支
 }
+
+void main() => nullSafetyRewriteDemo();
