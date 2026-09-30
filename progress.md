@@ -137,19 +137,23 @@ String gradeOf(int score) {
 
 ## 八、证据截图
 
-> 以下为控制台输出与 Git 记录的文本证据（实际提交时在雨课堂编辑器补传运行截图）。
+> 以下为控制台输出与 Git 记录的文本证据（雨课堂不支持粘贴图片时，直接用以下文本作为证据；本报告不另行插入图片）。
 
 **证据 1：`dart run` 课堂案例输出（节选关键行）**
 ```
 ===== Dart 基础语法合集 =====
---- 变量声明 ---
-title: 第一次作业 (String)   year: 2026 (int)   score: 92.5 (double)
 --- 空安全四件套 ---
 nickname = null
-  ?.length = null        ?? 默认 = 未填写
-students[001]! = 李华    late token = abc-123
+  ?.length = null
+  ?? 默认 = 未填写
+nickname = hu
+  ?.length = 2
+  ?? 默认 = hu
+students[001]! = 李华
+late token = abc-123
 --- 运算符：整除 ~/ 与除法 / ---
-7 / 2 = 3.5    7 ~/ 2 = 3
+7 / 2 = 3.5
+7 ~/ 2 = 3
 ===== 全部输出结束 =====
 ```
 一句话说明：四组示例全部按预期输出，`?.` 短路返回 null、`~/` 整除为 3、`/` 为 3.5。
@@ -161,14 +165,30 @@ No issues found!
 ```
 一句话说明：空安全无编译告警，检查点通过。
 
-**证据 3：Git 提交记录（4 次提交）**
+**证据 3：Git 提交记录（6 次提交）**
 ```
+1afd2db refactor: split each task into its own folder (01-06)
+a013404 docs: progress report (10 sections)
 c9d2a2c feat: autonomous practice + independent research + README
 0b39502 docs: ai quiz round 1 records
 4648c44 feat: types/func/flow demos all pass
 526d631 feat: dart create dart_basics
 ```
-一句话说明：按指南三步提交 + 自主实践，共 4 次提交，满足「≥3 次提交」。
+一句话说明：按指南三步提交 + 自主实践 + 报告 + 按任务拆分重组，共 6 次语义化提交，满足「≥3 次提交」。
+
+**证据 4：自主实践三任务运行（节选）**
+```
+=== 04 成绩分级器 ===
+-5 分 -> 非法输入
+0 分 -> 零分
+40 分 -> 不及格
+60 分 -> 中
+80 分 -> 良
+90 分 -> 优
+100 分 -> 满分
+150 分 -> 非法输入
+```
+一句话说明：成绩分级器边界 100/0 与非法输入 -5/150 均正确分类。
 
 ## 九、自评
 
@@ -176,7 +196,7 @@ c9d2a2c feat: autonomous practice + independent research + README
 
 - 案例复现 `dart_basics`：✅ 代码与指南一致、可运行、3 次 Git 提交。
 - 检查点：✅ `dart run` 全部输出正确；`dart analyze` 无告警。
-- Git 规范：✅ 4 次语义化提交（feat/docs）。
+- Git 规范：✅ 6 次语义化提交（feat/docs/refactor）。
 - 报告记录：✅ 十节齐全。
 - 自主实践①空安全改写：✅ 隐患版对照 + 安全版逐处解释。
 - 自主实践②命名参数设计：✅ required + 可选 + 默认值，三种调用。
